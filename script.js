@@ -1,4 +1,5 @@
 // List of movies
+// Each item in the list is a js object
 /*
     {
         title: "My Movie Title",
@@ -57,4 +58,33 @@ let movies = [
         rank: 7,
         id: "tt0050083"
     }
-]
+];
+
+function createTable(objectList) {
+    // Create the opening html text for a table and include the headers
+    let table = `
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Rank</th>
+                <th>ID</th>
+            </tr>`;
+
+    // Iterate over the list of objects
+    for (let i = 0; i < objectList.length; i++) {
+        table += `
+            <tr>
+                <td>${objectList[i].title}</td>
+                <td>${objectList[i].rank}</td>
+                <td>${objectList[i].id}</td>
+            </tr>`;
+    }
+
+    // Concatenate the closing html table tag inside the table variable
+    table += '</table>';
+
+    // Add the table to the div element in html
+    document.getElementById("movies-list").innerHTML = table;
+}
+
+createTable(movies);
