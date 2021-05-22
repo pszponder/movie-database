@@ -7,7 +7,7 @@
         id: "id-string"
     },
 */
-let movies = [
+let moviesUnsorted = [
     {
         title: "Fight Club",
         rank: 10,
@@ -87,4 +87,41 @@ function createTable(objectList) {
     document.getElementById("movies-list").innerHTML = table;
 }
 
-createTable(movies);
+
+// Create a function to return a sorted array of objects
+// arr is the array that will be sorted
+// property is the property in the array to sort by (title, rank or id)
+// sortDirection determines if you want to sort acending or descending
+function sort(arr, property, sortDirection) {
+    // Iterate over the list n-1 times
+    // For each iteration, establish a 
+}
+
+
+// Create a findMax function which returns the maximum value of an array
+function findMax(arr) {
+    let max = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+    }
+    return max;
+}
+
+// Create a findMin function which returns the minimum value of an array
+function findMin(arr) {
+    let min = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] < min) {
+            min = arr[i];
+        }
+    }
+    return min;
+}
+
+
+
+
+// TODO: Make sure to input the sorted movies list
+createTable(moviesUnsorted);
