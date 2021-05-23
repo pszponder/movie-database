@@ -60,6 +60,15 @@ let moviesUnsorted = [
     }
 ];
 
+// Display the unsorted list at page startup
+createTable(moviesUnsorted);
+
+// Add Event Listeners to Buttons in HTML to allow user to select the method for sorting the table
+document.getElementById('title').addEventListener('click', function() {createTable(sort(moviesUnsorted, 'title'))});
+document.getElementById('rank').addEventListener('click', function() {createTable(sort(moviesUnsorted, 'rank'))});
+document.getElementById('id').addEventListener('click', function() {createTable(sort(moviesUnsorted, 'id'))});
+
+
 function createTable(objectList) {
     // Create the opening html text for a table and include the headers
     let table = `
@@ -121,5 +130,3 @@ function findMax(arr, index, property) {
     }
     return {maxObject: obj, maxIndex: obj_index};
 }
-
-createTable(sort(moviesUnsorted, 'rank'));
