@@ -63,7 +63,6 @@ let moviesUnsorted = [
 // Display the unsorted list at page startup
 createTable(moviesUnsorted);
 
-
 function createTable(objectList) {
     // Create the opening html text for a table and include the headers
     let table = `
@@ -109,6 +108,8 @@ function createTable(objectList) {
     });
 }
 
+// Create a variable that will be used to determine direction of sort (ascending or descending)
+let sortDirection = 'descending';
 
 // Sort function takes in an array of objects and a property to sort the array with
 // property is either 'title', 'rank', or 'id'
@@ -129,7 +130,7 @@ function sort(arr, property){
     return arr;
   }
 
-// Create a function to find a max value
+// Function to find a max value
 function findMax(arr, index, property) {
     // Initialize variables
     let obj = arr[index];
