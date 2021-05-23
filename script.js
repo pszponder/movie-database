@@ -63,20 +63,15 @@ let moviesUnsorted = [
 // Display the unsorted list at page startup
 createTable(moviesUnsorted);
 
-// Add Event Listeners to Buttons in HTML to allow user to select the method for sorting the table
-document.getElementById('title').addEventListener('click', function() {createTable(sort(moviesUnsorted, 'title'))});
-document.getElementById('rank').addEventListener('click', function() {createTable(sort(moviesUnsorted, 'rank'))});
-document.getElementById('id').addEventListener('click', function() {createTable(sort(moviesUnsorted, 'id'))});
-
 
 function createTable(objectList) {
     // Create the opening html text for a table and include the headers
     let table = `
         <table>
             <tr>
-                <th>Title</th>
-                <th>Rank</th>
-                <th>ID</th>
+                <th><button class='button' id='title'>Title</button></th>
+                <th><button class='button' id='rank'>Rank</button></th>
+                <th><button class='button' id='id'>ID</button></th>
             </tr>`;
 
     // Iterate over the list of objects
@@ -94,7 +89,26 @@ function createTable(objectList) {
 
     // Add the table to the div element in html
     document.getElementById("movies-list").innerHTML = table;
+
+    // Add Event Listeners to Buttons in HTML to allow user to select the method for sorting the table
+    document.getElementById('title').addEventListener('click', function() {
+        createTable(sort(moviesUnsorted, 'title'));
+    });
+
+    document.getElementById('rank').addEventListener('click', function() {
+        createTable(sort(moviesUnsorted, 'rank'));
+    });
+
+    // Will need to remove the event handler of the 1st function in order to run the 2nd function, otherwise, both will run at the same time
+    // document.getElementById('rank').addEventListener('click', function() {
+    //     alert('clicked Rank 2nd time');
+    // });
+
+    document.getElementById('id').addEventListener('click', function() {
+        createTable(sort(moviesUnsorted, 'id'));
+    });
 }
+
 
 // Sort function takes in an array of objects and a property to sort the array with
 // property is either 'title', 'rank', or 'id'

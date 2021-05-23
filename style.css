@@ -1,5 +1,4 @@
-h1, 
-#buttons {
+h1 {
     margin: auto;
     text-align: center;
 }
@@ -11,4 +10,8 @@ table, th, td {
 table {
     min-width: 550px;
     margin: 15px auto 0 auto;
+}
+
+.button {
+    font-weight: bold;
 }
