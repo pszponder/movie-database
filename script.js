@@ -91,25 +91,48 @@ function createTable(objectList) {
 // property is either 'title', 'rank', or 'id'
 function sort(arr, property){
     for (let i = 0; i < arr.length - 1; i++) {
-        // Initialize variables
-        let obj = arr[i];
-        let obj_index = i;
+        // // Initialize variables
+        // let obj = arr[i];
+        // let obj_index = i;
 
-        // Iterate across a sub-array and find the max rank
-        for (let j = i; j < arr.length; j++) {
-            if (arr[j][property] > obj[property]) {
-                obj = arr[j];
-                obj_index = j;
-            }
-        }
+        // // Iterate across a sub-array and find the max value
+        // for (let j = i; j < arr.length; j++) {
+        //     if (arr[j][property] > obj[property]) {
+        //         obj = arr[j];
+        //         obj_index = j;
+        //     }
+        // }
+
+        let obj = findMax(arr, i, property);
+        let maxObject = obj.maxObject;
+        let maxIndex = obj.maxIndex;
+
         // Swap the position of the object with the max value with the object at the current index
-        arr[obj_index] = arr[i];
-        arr[i] = obj;
+        // arr[obj_index] = arr[i];
+        // arr[i] = obj;
+        arr[maxIndex] = arr[i];
+        arr[i] = maxObject;
     }
     return arr;
   }
 
-createTable(sort(moviesUnsorted, 'id'));
+// Create a function to find a max value
+function findMax(arr, index, property) {
+    // Initialize variables
+    let obj = arr[index];
+    let obj_index = index;
+
+    // Iterate across a sub-array and find the max value
+    for (let j = index; j < arr.length; j++) {
+        if (arr[j][property] > obj[property]) {
+            obj = arr[j];
+            obj_index = j;
+        }
+    }
+    return {maxObject: obj, maxIndex: obj_index};
+}
+
+createTable(sort(moviesUnsorted, 'rank'));
 
 // // Create a function to return a sorted array of objects
 // // arr is the array that will be sorted
