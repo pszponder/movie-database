@@ -90,7 +90,11 @@ function createTable(objectList) {
 // Sort function takes in an array of objects and a property to sort the array with
 // property is either 'title', 'rank', or 'id'
 function sort(arr, property){
+
+    // Iterate through each object in the array minus the last element
     for (let i = 0; i < arr.length - 1; i++) {
+
+        // Call findMax function and define maxObject and maxIndex
         let obj = findMax(arr, i, property);
         let maxObject = obj.maxObject;
         let maxIndex = obj.maxIndex;
