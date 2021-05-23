@@ -87,8 +87,9 @@ function createTable(objectList) {
     document.getElementById("movies-list").innerHTML = table;
 }
 
-// Sort function
-function sort(arr){
+// Sort function takes in an array of objects and a property to sort the array with
+// property is either 'title', 'rank', or 'id'
+function sort(arr, property){
     for (let i = 0; i < arr.length - 1; i++) {
         // Initialize variables
         let obj = arr[i];
@@ -96,7 +97,7 @@ function sort(arr){
 
         // Iterate across a sub-array and find the max rank
         for (let j = i; j < arr.length; j++) {
-            if (arr[j].rank > obj.rank) {
+            if (arr[j][property] > obj[property]) {
                 obj = arr[j];
                 obj_index = j;
             }
@@ -108,7 +109,7 @@ function sort(arr){
     return arr;
   }
 
-createTable(sort(moviesUnsorted));
+createTable(sort(moviesUnsorted, 'id'));
 
 // // Create a function to return a sorted array of objects
 // // arr is the array that will be sorted
