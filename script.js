@@ -92,24 +92,31 @@ function createTable(objectList) {
     // Add Event Listeners to Buttons in HTML to allow user to select the method for sorting the table
     document.getElementById('title').addEventListener('click', function() {
         createTable(sort(moviesUnsorted, 'title'));
+        switchSortDirection();
     });
 
     document.getElementById('rank').addEventListener('click', function() {
         createTable(sort(moviesUnsorted, 'rank'));
+        switchSortDirection();
     });
-
-    // Will need to remove the event handler of the 1st function in order to run the 2nd function, otherwise, both will run at the same time
-    // document.getElementById('rank').addEventListener('click', function() {
-    //     alert('clicked Rank 2nd time');
-    // });
 
     document.getElementById('id').addEventListener('click', function() {
         createTable(sort(moviesUnsorted, 'id'));
+        switchSortDirection();
     });
 }
 
-// Create a variable that will be used to determine direction of sort (ascending or descending)
+// Determine direction of sort (ascending or descending)
 let sortDirection = 'descending';
+
+// Function to switch the sort direction
+function switchSortDirection() {
+    if (sortDirection === 'descending') {
+        sortDirection = 'ascending';
+    } else {
+        sortDirection = 'descending';
+    }
+}
 
 // Sort function takes in an array of objects and a property to sort the array with
 // property is either 'title', 'rank', or 'id'
@@ -118,17 +125,28 @@ function sort(arr, property){
     // Iterate through each object in the array minus the last element
     for (let i = 0; i < arr.length - 1; i++) {
 
-        // Call findMax function and define maxObject and maxIndex
-        let obj = findMax(arr, i, property);
-        let maxObject = obj.maxObject;
-        let maxIndex = obj.maxIndex;
+        // Call findMax or findMin function and define Object and Index
+        let obj = {};
+        let sortedObject = {};
+        let sortedObjectIndex = 0;
+
+        // Identify the correct sorted object (min or max) depending on the sortDirection
+        if (sortDirection === 'descending') {
+            obj = findMax(arr, i, property);
+            sortedObject = obj.maxObject;
+            sortedObjectIndex = obj.maxIndex;
+        } else {
+            obj = findMin(arr, i, property);
+            sortedObject = obj.minObject;
+            sortedObjectIndex = obj.minIndex;
+        }
 
         // Swap the position of the object with the max value with the object at the current index
-        arr[maxIndex] = arr[i];
-        arr[i] = maxObject;
+        arr[sortedObjectIndex] = arr[i];
+        arr[i] = sortedObject;
     }
     return arr;
-  }
+}
 
 // Function to find a max value
 function findMax(arr, index, property) {
@@ -144,4 +162,20 @@ function findMax(arr, index, property) {
         }
     }
     return {maxObject: obj, maxIndex: obj_index};
+}
+
+// Function to find a min value
+function findMin(arr, index, property) {
+    // Initialize variables
+    let obj = arr[index];
+    let obj_index = index;
+
+    // Iterate across a sub-array and find the max value
+    for (let j = index; j < arr.length; j++) {
+        if (arr[j][property] < obj[property]) {
+            obj = arr[j];
+            obj_index = j;
+        }
+    }
+    return {minObject: obj, minIndex: obj_index};
 }
