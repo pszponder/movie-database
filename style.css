@@ -1,3 +1,8 @@
+body {
+    background-color: #000;
+    color: #ffffff;
+}
+
 h1 {
     margin: auto;
     text-align: center;
@@ -5,13 +10,38 @@ h1 {
 
 table, th, td {
     border: 1px solid black;
+    border-collapse: collapse;
+    border: none;
 }
 
 table {
     min-width: 550px;
     margin: 15px auto 0 auto;
+    background-color: #111111;
+    border-radius: 5px;
+
+}
+
+tr:nth-child(even) {
+    background-color: #17191a;
+}
+
+td {
+    color: #b7b9bb;
+    padding: 10px;
 }
 
 .button {
     font-weight: bold;
+    background-color: #393b41;
+    color: #dbdce0;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px 5px 10px;
+
+}
+
+#center {
+    text-align: center;
 }

@@ -68,8 +68,8 @@ function createTable(objectList) {
     let table = `
         <table>
             <tr>
-                <th><button class='button' id='title'>Title</button></th>
-                <th><button class='button' id='rank'>Rank</button></th>
+                <th><button class='button' id='title'>TITLE</button></th>
+                <th><button class='button' id='rank'>RANK</button></th>
                 <th><button class='button' id='id'>ID</button></th>
             </tr>`;
 
@@ -78,7 +78,7 @@ function createTable(objectList) {
         table += `
             <tr>
                 <td>${objectList[i].title}</td> 
-                <td>${objectList[i].rank}</td>
+                <td id='center'>${objectList[i].rank}</td>
                 <td>${objectList[i].id}</td>
             </tr>`;
     }
